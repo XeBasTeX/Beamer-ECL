@@ -1,0 +1,246 @@
+%% Informations générales
+
+\NeedsTeXFormat{LaTeX2e}[1999/01/01]
+\ProvidesPackage{diapo}[%
+  2018/03/03 v0.1 diapo
+  package (type area)]
+\typeout{%
+  Package typearea, \csname ver@typearea.\@pkgextension\endcsname^^J%
+  \@spaces\@spaces\@spaces\@spaces\space\space
+  Copyright (C) Bastien Laville, 2018^^J%
+}
+
+%--------------------CHARGEMENT DES EXTENSIONS------------------------------------------%
+
+%% Langue utilisée %%
+\RequirePackage[applemac]{inputenc} %Reconnaissance des lettre du clavier
+\RequirePackage[T1]{fontenc}     
+\RequirePackage[francais]{babel} 
+
+
+%% Mise en page %%
+\RequirePackage{graphicx}	%import img
+\RequirePackage{booktabs}	%make table of contents
+\RequirePackage{lmodern} 
+\RequirePackage{fancyhdr}	%des titres fouqués
+\RequirePackage{lipsum}		%Mettre du texte lipsum en maquette
+\RequirePackage{framed}		%des cadres pougnés
+
+
+%% Images, figures et Tables %%
+\RequirePackage{epstopdf} 	%Utiliser .eps
+\RequirePackage{epsfig}	
+\RequirePackage{float}	%pour avoir des tableaux qui restent dans leurs sections
+\RequirePackage{graphicx}	%Importer image
+\RequirePackage{hyperref}	%Importer hypertexte
+\RequirePackage{array}		%Importer tableau
+\RequirePackage{colortbl}		%Couleurs dans le tableau
+
+%% Des sections et des sous-titres %%
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+
+%% Draft %%
+\RequirePackage{draftwatermark}
+\SetWatermarkScale{3}
+
+%% Du dessin et des couleurs %%
+\RequirePackage{xcolor}		%changer la couleur
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{tikz}		%Pour dessiner
+\RequirePackage{schemabloc}	%des schémas-blocs
+\usetikzlibrary{circuits}	%Pour les schémas blocs
+
+
+%% Des maths %%
+\RequirePackage{listings}		%importer du code et le travailler
+%\RequirePackage[upright]{fourier}
+%\RequirePackage{fouriernc}
+\RequirePackage{amsmath, amssymb, amsfonts, amsthm, mathtools} % mathtools for: Aboxed (put box on last equation in align envirenment)
+\RequirePackage{siunitx}		% Des unités bien écrites pour la physique
+
+
+\DeclareOption{option}{...}
+\DeclareOption*{...}
+\ProcessOptions
+
+
+%--------------------DÉFINITIONS DES COULEURS------------------------------------------%
+
+
+\definecolor{CentraleRed}{rgb}{0.558,0.09, 0.18}%personal color
+\definecolor{ecl_red}{RGB}{150,23,46}
+\definecolor{CentraleGray}{rgb}{0.67,0.67, 0.67}%personal color
+\definecolor{CentraleBlue}{RGB}{0,67,89}%personal color
+\definecolor{CentraleGrayEq}{RGB}{66,66,66}%personal color
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+
+%--------------------SECTIONS, FIGURES ET TABLEAUX------------------------------------------%
+
+%\sectionfont{\color{CentraleRed}\sffamily}  % sets colour of sections
+%\subsectionfont{\color{CentraleRed}\sffamily}  % sets colour of sections
+\DeclareCaptionFont{CaptionCentrale}{\color{CentraleRed}}
+\captionsetup[table]{labelfont={CaptionCentrale,bf}}
+\captionsetup[subfigure]{labelfont=bf,textfont=sf}
+
+
+%--------------------RACCOURCIS   MATHEMATIQUES------------------------------------------%
+
+%%% Dérivation et opérateurs
+
+\newcommand{\ch}[1] {\mathrm{#1}}
+\newcommand{\sub}[1] {$_{\text{#1}}$}
+\renewcommand{\sup}[1] {$^{\text{#1}}$}
+\newcommand{\citea}[1] {$^{\text{\cite{#1}}}$}
+\newcommand{\grad}[1] {\vec{\ch{grad}}\left( #1 \right)}
+\newcommand{\rot}[1] {\vec{\ch{rot}}\left( \vec{#1} \right)}
+\newcommand{\rota}[1] {\vec{\ch{rot}}\left( #1 \right)}
+\renewcommand{\div}[1] {\ch{div}\left( \vec{#1} \right)}
+\newcommand{\diva}[1] {\ch{div}\left( #1 \right)}
+\newcommand{\oper}[3] {\langle #1 \arrowvert #2 \arrowvert #3 \rangle}
+\newcommand{\derp}[2] {\dfrac{\partial\, #1}{\partial\, #2}}
+\newcommand{\derd}[2] {\dfrac{\ch{d}\, #1}{\ch{d}\, #2}}
+\newcommand{\derD}[2] {\dfrac{\ch{D}\, #1}{\ch{D}\, #2}}
+\newcommand{\derda}[2] {\dfrac{\ch{d}^2\, #1}{\ch{d} #2^2}}
+\newcommand{\derdb}[2] {\dfrac{\ch{d}^2\, #1}{\ch{d} #2 ^2}}
+\newcommand{\derpb}[2] {\dfrac{\partial^2\, #1}{\partial #2 ^2}}
+\newcommand{\ket}[1] {| #1 \rangle}
+\newcommand{\bra}[1] {\langle #1 |}
+\newcommand{\bracket}[1] {\langle #1 \rangle}
+\newcommand{\bracketb}[2] {\langle #1 \arrowvert #2 \rangle}
+\newcommand{\bracketc}[1] {\langle #1 \arrowvert #1 \rangle}
+
+%%% Lettres grecques dispo dans le texte %%%
+
+\newcommand{\ttt} {$\forall$~}
+\newcommand{\alphat} {$\alpha$}
+\newcommand{\betat} {$\beta$}
+\newcommand{\taut} {$\tau$}
+\newcommand{\nut} {$\nu$}
+\newcommand{\varepsilont} {$\varepsilon$}
+\newcommand{\epsilont} {$\varepsilon$}
+\newcommand{\omegat} {$\omega$}
+\newcommand{\phit} {$\varphi$}
+\newcommand{\deltat} {$\delta$}
+\newcommand{\Deltat} {$\Delta$}
+\newcommand{\thetat} {$\theta$}
+\newcommand{\sigmat} {$\sigma$}
+\newcommand{\pit} {$\pi$ }
+\newcommand{\chit} {$\chi$}
+\newcommand{\mut} {$\mu$}
+\newcommand{\lambdat} {$\lambda$}
+\newcommand{\rhot} {$\rho$}
+\newcommand{\kappat} {$\kappa$}
+\newcommand{\gammat} {$\gamma$}
+\newcommand{\etat} {$\eta$}
+\newcommand{\A} {$\mathcal{A}$~}
+
+
+%%% Raccourcis du turfu %%%
+
+\def\ds{\displaystyle}
+\def\v{\overrightarrow}
+
+%%% Notation des ensembles %%%
+
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\K{\mathbb{K}}
+\def\L{\mathcal{L}}
+\def\M{\mathcal{M}}
+\def\B{\mathcal{B}}
+\def\P{\mathcal{P}}
+
+
+%%% Fonctions du traitement du signal %%%
+
+\def\eqdef{\stackrel{\mathrm{def}}{=}}
+\def\argmax{\operatornamewithlimits{argmax}}
+\def\argmin{\operatornamewithlimits{argmin}}
+\def\ud{\, \mathrm{d}}
+\def\vect{\text{Vect}}
+\def\sinc{\ensuremath{\mathrm{sinc}}}
+\def\esp{\ensuremath{\mathbb{E}}}
+\def\hilbert{\ensuremath{\mathcal{H}}}
+\def\fourier{\ensuremath{\mathcal{F}}}
+\def\sgn{\text{sgn}}
+\DeclareFontFamily{U}{wncy}{}
+\DeclareFontShape{U}{wncy}{m}{n}{<->wncyr10}{}
+\DeclareSymbolFont{mcy}{U}{wncy}{m}{n}
+\DeclareMathSymbol{\Sh}{\mathord}{mcy}{"58} 	%ces 4 lignes définissent la lettre sha pour le peigne de Dirac
+
+%%% Autres %%%
+
+\def\x{\times}
+\def\ointint{\begingroup
+   \displaystyle
+\unitlength 1pt
+\int\mkern-7.2mu
+\begin{picture}(0,3)\put(0,3){\oval
+   (10,8)}\end{picture}
+\mkern-7mu\int\endgroup}
+%\def\grad{\overrightarrow{\textnormal{grad}}}
+
+
+
+
+%--------------------METTRE DU CODE INFORMATIQUE------------------------------------------%
+
+
+\lstset{language=Python,%
+    basicstyle=\footnotesize,
+    breaklines=false,%,
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{CentraleRed},
+    commentstyle=\color{CentraleGray},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+\lstset{language=Matlab,                        % Use MATLAB
+        frame=single,                           % Single frame around code
+        basicstyle=\small\ttfamily,             % Use small true type font
+        keywordstyle=[1]\color{blue}\bfseries,        % MATLAB functions bold and blue
+        keywordstyle=[2]\color{mylilas},         % MATLAB function arguments purple
+        keywordstyle=[3]\color{blue}\underbar,  % User functions underlined and blue
+        identifierstyle=,                       % Nothing special about identifiers
+                                                % Comments small green courier
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{mygreen}\small,
+        stringstyle=\color{CentraleRed},             % Strings are purple
+        breaklines=true,
+        showstringspaces=false,                 % Don't put marks in string spaces
+        tabsize=5,                              % 5 spaces per tab
+        title=\lstname,
+        framextopmargin=2pt,
+    framexbottommargin=2pt,
+        %
+        %%% Put standard MATLAB functions not included in the default
+        %%% language here
+        morekeywords={xlim,ylim,var,alpha,factorial,poissrnd,normpdf,normcdf},
+        %
+        %%% Put MATLAB function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        %%% Put user defined functions here
+        morekeywords=[3]{FindESS, homework_example},
+        %
+        morecomment=[l][\color{blue}]{...},     % Line continuation (...) like blue comment
+        numbers=left,                           % Line numbers on left
+        firstnumber=1,                          % Line numbers start with line 1
+        numberstyle=\tiny\color{CentraleRed},          % Line numbers are blue
+        stepnumber=5                            % Line numbers go in steps of 5
+        }
+
+
+
+%% Fin du package
+\endinput
