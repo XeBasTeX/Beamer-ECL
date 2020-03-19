@@ -1,4 +1,4 @@
-%% Informations générales
+%% Informations g√©n√©rales
 
 \NeedsTeXFormat{LaTeX2e}[1999/01/01]
 \ProvidesPackage{diapo}[%
@@ -7,34 +7,34 @@
 \typeout{%
   Package typearea, \csname ver@typearea.\@pkgextension\endcsname^^J%
   \@spaces\@spaces\@spaces\@spaces\space\space
-  Copyright (C) Bastien Laville, 2018^^J%
+  Copyright (C) Bastien Laville, 2020^^J%
 }
 
 %--------------------CHARGEMENT DES EXTENSIONS------------------------------------------%
 
-%% Langue utilisée %%
-\RequirePackage[applemac]{inputenc} %Reconnaissance des lettre du clavier
+%% Langue utilis√©e %%
+\RequirePackage[utf8]{inputenc} %Reconnaissance des lettre du clavier
 \RequirePackage[T1]{fontenc}     
-\RequirePackage[francais]{babel} 
+\RequirePackage[french]{babel} 
 
 
 %% Mise en page %%
 \RequirePackage{graphicx}	%import img
 \RequirePackage{booktabs}	%make table of contents
 \RequirePackage{lmodern} 
-\RequirePackage{fancyhdr}	%des titres fouqués
+\RequirePackage{fancyhdr}	%des titres fouqu√©s
 \RequirePackage{lipsum}		%Mettre du texte lipsum en maquette
-\RequirePackage{framed}		%des cadres pougnés
+\RequirePackage{framed}		%des cadres pougn√©s
 
 
 %% Images, figures et Tables %%
-\RequirePackage{epstopdf} 	%Utiliser .eps
+\RequirePackage{epstopdf} 	% Utiliser .eps
 \RequirePackage{epsfig}	
-\RequirePackage{float}	%pour avoir des tableaux qui restent dans leurs sections
-\RequirePackage{graphicx}	%Importer image
-\RequirePackage{hyperref}	%Importer hypertexte
-\RequirePackage{array}		%Importer tableau
-\RequirePackage{colortbl}		%Couleurs dans le tableau
+\RequirePackage{float}	% pour avoir des tableaux qui restent dans leurs sections
+\RequirePackage{graphicx}	% Importer image
+\RequirePackage{hyperref}	% Importer hypertexte
+\RequirePackage{array}		% Importer tableau
+\RequirePackage{colortbl}		% Couleurs dans le tableau
 
 %% Des sections et des sous-titres %%
 \RequirePackage{caption}
@@ -45,19 +45,19 @@
 \SetWatermarkScale{3}
 
 %% Du dessin et des couleurs %%
-\RequirePackage{xcolor}		%changer la couleur
+\RequirePackage{xcolor}		% changer la couleur
 \RequirePackage[most]{tcolorbox}
-\RequirePackage{tikz}		%Pour dessiner
-\RequirePackage{schemabloc}	%des schémas-blocs
-\usetikzlibrary{circuits}	%Pour les schémas blocs
+\RequirePackage{tikz}		% Pour dessiner
+\RequirePackage{schemabloc}	% des sch√©mas-blocs
+\usetikzlibrary{circuits}	% Pour les sch√©mas blocs
 
 
 %% Des maths %%
-\RequirePackage{listings}		%importer du code et le travailler
+\RequirePackage{listings}		% Importer du code et le travailler
 %\RequirePackage[upright]{fourier}
 %\RequirePackage{fouriernc}
 \RequirePackage{amsmath, amssymb, amsfonts, amsthm, mathtools} % mathtools for: Aboxed (put box on last equation in align envirenment)
-\RequirePackage{siunitx}		% Des unités bien écrites pour la physique
+\RequirePackage{siunitx}		% Des unit√©s bien √©rites pour la physique
 
 
 \DeclareOption{option}{...}
@@ -65,7 +65,7 @@
 \ProcessOptions
 
 
-%--------------------DÉFINITIONS DES COULEURS------------------------------------------%
+%--------------------DEFINITIONS DES COULEURS------------------------------------------%
 
 
 \definecolor{CentraleRed}{rgb}{0.558,0.09, 0.18}%personal color
@@ -88,7 +88,7 @@
 
 %--------------------RACCOURCIS   MATHEMATIQUES------------------------------------------%
 
-%%% Dérivation et opérateurs
+%%% D√©rivation et op√©rateurs
 
 \newcommand{\ch}[1] {\mathrm{#1}}
 \newcommand{\sub}[1] {$_{\text{#1}}$}
@@ -170,7 +170,7 @@
 \DeclareFontFamily{U}{wncy}{}
 \DeclareFontShape{U}{wncy}{m}{n}{<->wncyr10}{}
 \DeclareSymbolFont{mcy}{U}{wncy}{m}{n}
-\DeclareMathSymbol{\Sh}{\mathord}{mcy}{"58} 	%ces 4 lignes définissent la lettre sha pour le peigne de Dirac
+\DeclareMathSymbol{\Sh}{\mathord}{mcy}{"58} 	%ces 4 lignes d√©finissent la lettre sha pour le peigne de Dirac
 
 %%% Autres %%%
 
@@ -221,7 +221,7 @@
         tabsize=5,                              % 5 spaces per tab
         title=\lstname,
         framextopmargin=2pt,
-    framexbottommargin=2pt,
+        framexbottommargin=2pt,
         %
         %%% Put standard MATLAB functions not included in the default
         %%% language here
